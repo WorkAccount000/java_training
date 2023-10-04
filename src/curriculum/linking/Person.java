@@ -8,16 +8,16 @@ public class Person {
 	private double height, weight;
 
 	Person(String firstName, String lastName, int age, double height, double weight){
-	this.firstName = firstName;
-	this.lastName = lastName;
-	this.age = age;
-	this.height = height;
-	this.weight = weight;
-	Person.count++;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.height = height;
+		this.weight = weight;
+		Person.count++;
 	}
 
 	public String getFullName(){
-	return this.firstName + this.lastName;
+		return this.firstName + this.lastName;
 	}
 
 	public void print(){
