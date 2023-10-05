@@ -25,7 +25,7 @@ public class Person {
 	public void print() {
 		System.out.printf("名前は%sです\n", name);
 		System.out.printf("年は%d才です\n", age);
-		System.out.printf("BMIは%.1fです\n", bmi());
+		System.out.printf("BMIは%.1fです\n", Math.floor(bmi()));
 	}
 	
 }

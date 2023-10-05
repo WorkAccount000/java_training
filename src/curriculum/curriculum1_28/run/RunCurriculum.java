@@ -21,6 +21,7 @@ public class RunCurriculum {
 		// インデックスの入力が空ならプログラム終了
 		if(!NullCheck.nullCheck(idxInput)) {
 			System.out.println("入力が空だったのでプログラムを終了します");
+			scn.close();
 			return;
 		}
 		
@@ -29,13 +30,8 @@ public class RunCurriculum {
 		// 文字列の解析に失敗した時はプログラム終了
 		if(idxList == null) {
 			System.out.println("ターゲットの特定に失敗したのでプログラムを終了します");
+			scn.close();
 			return;
-		}
-		/** 扱うターゲットのデータの配列 */
-		Prefecture[] targetData = new Prefecture[idxList.length];
-		// ターゲットのデータ格納
-		for(int i = 0; i < idxList.length; i++) {
-			targetData[i] = masterData[idxList[i]];
 		}
 		
 		/* ----------- 並び基準入力受付 ---------- */
@@ -50,32 +46,21 @@ public class RunCurriculum {
 		// ルールの入力が不正な値ならプログラム終了
 		if(!parseRule(rule)) {
 			System.out.println("ソートルールの入力が不適正な値なのでプログラムを終了します");
+			scn.close();
 			return;
 		}
 		
 		/* ----------- 処理 ---------- */
-		/** ターゲットデータの面積値の配列 */
-		double[] areaList = new double[idxList.length];
-		// 面積値格納
+		// インデックスのリストをソート
+		QuickSort.quickSort(idxList, 0, idxList.length - 1);
+		// 降順が指定されていた場合は逆順に並び替え
+		if(rule.equals("降順")) QuickSort.changeStandard(idxList);
+		// 結果表示
 		for(int i = 0; i < idxList.length; i++) {
-			areaList[i] = masterData[idxList[i]].getArea();
+			System.out.println();
+			masterData[idxList[i]].printInfo();
 		}
-		
-		// 面積値でソート
-		QuickSort.quickSort(areaList, 0, areaList.length - 1);
-		// 降順が指定された場合は並び替え
-		if(rule.equals("降順")) QuickSort.changeStandard(areaList);
-		
-		// ソートした面積値をキーにしてターゲットデータの情報表示
-		for(int i = 0; i < areaList.length; i++) {
-			for(int j = 0; j < targetData.length; j++) {
-				if(areaList[i] == targetData[j].getArea()) {
-					System.out.println();
-					targetData[j].printInfo();
-					continue;
-				}
-			}
-		}
+		scn.close();
 	}
 	
 	/**

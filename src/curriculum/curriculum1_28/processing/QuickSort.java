@@ -8,8 +8,8 @@ public class QuickSort {
 	 * @param i 入れ替えをする要素
 	 * @param j 入れ替えをする要素
 	 */
-	private static void swap (double[] ary, int i, int j) {
-		double tmp = ary[i];
+	private static void swap (int[] ary, int i, int j) {
+		int tmp = ary[i];
 		ary[i] = ary[j];
 		ary[j] = tmp;
 	}
@@ -21,9 +21,9 @@ public class QuickSort {
 	 * @param end 操作範囲の最後のインデックス
 	 * @return 並び替えを行った時の最終的なピボットのインデックス
 	 */
-	private static int partition(double[] ary, int start, int end) {
+	private static int partition(int[] ary, int start, int end) {
 		// 右端の要素をピボットとする
-		double pivot = ary[end];
+		int pivot = ary[end];
 		// ピボットの最終的な位置を示すためのインデックス
 		int pIdx = start;
 		// 操作範囲内でピボットの値よりも小さい要素を左に寄せていく
@@ -43,7 +43,7 @@ public class QuickSort {
 		return pIdx;
 	}
 	
-	public static void quickSort(double[] ary, int start, int end) {
+	public static void quickSort(int[] ary, int start, int end) {
 		// 操作範囲が1要素以下ならメソッド終了
 		if(start >= end) return;
 		
@@ -59,7 +59,7 @@ public class QuickSort {
 	 * 配列を逆順に並び替え
 	 * @param ary 並び替える配列
 	 */
-	public static void changeStandard(double[] ary) {
+	public static void changeStandard(int[] ary) {
 		/** 入れ替え回数 */
 		int numOfChange = ary.length % 2 == 0 ? ary.length / 2 : (ary.length - 1) / 2;
 		/** 入れ替え回数分両端からペアにして入れ替え */
